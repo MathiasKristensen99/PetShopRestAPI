@@ -39,5 +39,11 @@ namespace EASV.PetShop.WebApi.Controllers
         {
             _petService.DeletePet(id);
         }
+
+        [HttpPatch]
+        public void UpdatePetName(int id, string name)
+        {
+            _petService.UpdatePetName(id, name);
+        }
     }
 }
