@@ -40,6 +40,8 @@ namespace EASV.PetShop.WebApi
             services.AddScoped<IPetTypeRepository, PetTypeRepository>();
             services.AddScoped<IPetService, PetService>();
             services.AddScoped<IPetTypeService, PetTypeService>();
+            services.AddScoped<IOwnerService, OwnerService>();
+            services.AddScoped<IOwnerRepository, OwnerRepository>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
