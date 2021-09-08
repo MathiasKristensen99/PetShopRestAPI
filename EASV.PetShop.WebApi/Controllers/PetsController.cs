@@ -34,6 +34,12 @@ namespace EASV.PetShop.WebApi.Controllers
             return Ok(_petService.GetAllPets());
         }
 
+        [HttpGet("{id}")]
+        public ActionResult<Pet> GetById(int id)
+        {
+            return Ok(_petService.GetById(id));
+        }
+
         [HttpDelete]
         public void DeletePet(int id)
         {

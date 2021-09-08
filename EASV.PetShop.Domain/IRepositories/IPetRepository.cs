@@ -11,6 +11,8 @@ namespace EASV.PetShop.Domain.IRepositories
 
         List<Pet> ReadAllPets();
 
+        Pet GetById(int id);
+
         void CreatePet(Pet pet);
 
         void DeletePet(int id);

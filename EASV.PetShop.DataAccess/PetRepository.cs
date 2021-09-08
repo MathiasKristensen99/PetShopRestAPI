@@ -25,6 +25,18 @@ namespace EASV.PetShop.DataAccess
             petType3.Id = 3;
             petType3.Name = "Goat";
             
+            Owner owner1 = new Owner();
+            owner1.Id = 1;
+            owner1.Name = "Simon";
+
+            Owner owner2 = new Owner();
+            owner2.Id = 2;
+            owner2.Name = "Michael";
+
+            Owner owner3 = new Owner();
+            owner3.Id = 3;
+            owner3.Name = "Bo";
+
             Pet pet1 = new Pet();
             pet1.Id = 1;
             pet1.Name = "Mike";
@@ -33,6 +45,7 @@ namespace EASV.PetShop.DataAccess
             pet1.Color = "Black";
             pet1.Type = petType1;
             pet1.Price = 5000;
+            pet1.Owner = owner1;
             allPets.Add(pet1);
 
             Pet pet2 = new Pet();
@@ -43,6 +56,7 @@ namespace EASV.PetShop.DataAccess
             pet2.Color = "White";
             pet2.Type = petType2;
             pet2.Price = 2000;
+            pet2.Owner = owner3;
             allPets.Add(pet2);
 
             Pet pet3 = new Pet();
@@ -53,6 +67,7 @@ namespace EASV.PetShop.DataAccess
             pet3.Color = "Orange";
             pet3.Type = petType3;
             pet3.Price = 10000;
+            pet3.Owner = owner2;
             allPets.Add(pet3);
 
             Pet pet4 = new Pet();
@@ -63,6 +78,7 @@ namespace EASV.PetShop.DataAccess
             pet4.Color = "Brown";
             pet4.Type = petType1;
             pet4.Price = 8000;
+            pet4.Owner = owner1;
             allPets.Add(pet4);
 
             Pet pet5 = new Pet();
@@ -73,6 +89,7 @@ namespace EASV.PetShop.DataAccess
             pet5.Color = "Black";
             pet5.Type = petType2;
             pet5.Price = 4000;
+            pet5.Owner = owner3;
             allPets.Add(pet5);
             
             return allPets;
@@ -81,6 +98,21 @@ namespace EASV.PetShop.DataAccess
         public List<Pet> ReadAllPets()
         {
             return allPets;
+        }
+
+        public Pet GetById(int id)
+        {
+            List<Pet> pets = GetAllPets();
+
+            foreach (Pet pet in pets)
+            {
+                if (pet.Id.Equals(id))
+                {
+                    return pet;
+                }
+            }
+
+            return null;
         }
 
         public void CreatePet(Pet pet)
@@ -93,6 +125,7 @@ namespace EASV.PetShop.DataAccess
             newPet.Color = pet.Color;
             newPet.BirthDate = pet.BirthDate;
             newPet.SoldDate = pet.SoldDate;
+            newPet.Owner = pet.Owner;
             
             allPets.Add(newPet);
         }

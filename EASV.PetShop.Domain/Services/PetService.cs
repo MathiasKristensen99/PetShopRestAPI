@@ -26,6 +26,11 @@ namespace EASV.PetShop.Domain.Services
             return _petRepository.ReadAllPets();
         }
 
+        public Pet GetById(int id)
+        {
+            return _petRepository.GetById(id);
+        }
+
         public void CreatePet(Pet pet)
         {
             _petRepository.CreatePet(pet);
