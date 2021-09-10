@@ -1,5 +1,6 @@
 ﻿using EASV.PetShop.Core.Models;
 using EASV.PetShop.DataAccess.Entities;
+using EASV.PetShop.Domain.Models;
 
 namespace EASV.PetShop.DataAccess.Converters
 {
@@ -15,6 +16,14 @@ namespace EASV.PetShop.DataAccess.Converters
                 Price = entity.Price,
                 BirthDate = entity.BirthDate,
                 SoldDate = entity.SoldDate,
+                Type = new PetType
+                {
+                    Id = entity.PetTypeId
+                },
+                Owner = new Owner
+                {
+                    Id = entity.OwnerId,
+                }
             };
         }
 
