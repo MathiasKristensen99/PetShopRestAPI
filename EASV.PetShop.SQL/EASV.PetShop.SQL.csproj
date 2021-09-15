@@ -1,0 +1,20 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <TargetFramework>net5.0</TargetFramework>
+    </PropertyGroup>
+
+    <ItemGroup>
+      <ProjectReference Include="..\EASV.PetShop.Core\EASV.PetShop.Core.csproj" />
+      <ProjectReference Include="..\EASV.PetShop.Domain\EASV.PetShop.Domain.csproj" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <PackageReference Include="Microsoft.EntityFrameworkCore" Version="5.0.10" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <Folder Include="Converters" />
+    </ItemGroup>
+
+</Project>
