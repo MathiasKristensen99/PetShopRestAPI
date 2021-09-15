@@ -19,9 +19,14 @@ namespace EASV.PetShop.Domain.Services
             return _insuranceRepository.GetById(id);
         }
 
-        public List<Insurance> getAllInsurances()
+        public List<Insurance> GetAllInsurances()
         {
-            return _insuranceRepository.getAllInsurances();
+            return _insuranceRepository.GetAllInsurances();
+        }
+
+        public Insurance CreateInsurance(Insurance insurance)
+        {
+            return _insuranceRepository.CreateInsurance(insurance);
         }
     }
 }

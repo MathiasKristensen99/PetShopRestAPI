@@ -28,9 +28,25 @@ namespace EASV.PetShop.SQL.Repositories
                 .FirstOrDefault(insurance => insurance.Id == id);
         }
 
-        public List<Insurance> getAllInsurances()
+        public List<Insurance> GetAllInsurances()
         {
             throw new NotImplementedException();
+        }
+
+        public Insurance CreateInsurance(Insurance insurance)
+        {
+            var entity = _ctx.Add(new InsuranceEntity
+            {
+                Name = insurance.Name
+            }).Entity;
+            
+            _ctx.SaveChanges();
+            
+            return new Insurance
+            {
+                Id = entity.Id,
+                Name = entity.Name
+            };
         }
     }
 }

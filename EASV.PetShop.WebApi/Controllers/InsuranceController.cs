@@ -32,5 +32,20 @@ namespace EASV.PetShop.WebApi.Controllers
                 return StatusCode(500, "Du har fucked op");
             }
         }
+
+        [HttpPost]
+        public ActionResult<Insurance> CreateInsurance ([FromBody] Insurance insurance)
+        {
+            try
+            {
+                return Ok(_insuranceService.CreateInsurance(insurance));
+            }
+            catch (Exception e)
+            {
+                StatusCode(500, "Du har fucked up");
+            }
+
+            return null;
+        }
     }
 }

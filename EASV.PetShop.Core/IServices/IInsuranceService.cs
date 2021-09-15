@@ -7,6 +7,8 @@ namespace EASV.PetShop.Core.IServices
     {
         Insurance GetById(int id);
 
-        List<Insurance> getAllInsurances();
+        List<Insurance> GetAllInsurances();
+
+        Insurance CreateInsurance(Insurance insurance);
     }
 }
