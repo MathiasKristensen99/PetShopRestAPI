@@ -20,12 +20,38 @@ namespace EASV.PetShop.WebApi.Controllers
             _insuranceService = insuranceService;
         }
 
-        [HttpGet("id")]
+        [HttpGet]
+        public ActionResult<List<Insurance>> ReadAllInsurances()
+        {
+            try
+            {
+                return Ok(_insuranceService.ReadAllInsurances());
+            }
+            catch (Exception e)
+            {
+                return StatusCode(500, "Du har fucked op");
+            }
+        }
+
+        [HttpGet("{id}")]
         public ActionResult<Insurance> GetById(int id)
         {
             try
             {
                 return Ok(_insuranceService.GetById(id));
+            }
+            catch (Exception e)
+            {
+                return StatusCode(500, "Du har fucked op");
+            }
+        }
+
+        [HttpDelete("{id}")]
+        public ActionResult<Insurance> DeleteInsurance(int id)
+        {
+            try
+            {
+                return Ok(_insuranceService.DeleteInsurance(id));
             }
             catch (Exception e)
             {
@@ -46,6 +72,24 @@ namespace EASV.PetShop.WebApi.Controllers
             }
 
             return null;
+        }
+
+        [HttpPut("{id}")]
+        public ActionResult<Insurance> UpdateInsurance([FromBody] Insurance insurance, int id)
+        {
+            try
+            {
+                if (id != insurance.Id)
+                {
+                    return BadRequest("Id doesnt match Id from insurance");
+                }
+                
+                return Ok(_insuranceService.UpdateInsurance(insurance, id));
+            }
+            catch (Exception e)
+            {
+                return StatusCode(500, "Du har fucked op");
+            }
         }
     }
 }

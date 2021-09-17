@@ -6,8 +6,13 @@ namespace EASV.PetShop.Domain.IRepositories
     public interface IInsuranceRepository
     {
         Insurance GetById(int id);
-        List<Insurance> GetAllInsurances();
+        
+        List<Insurance> ReadAllInsurances();
         
         Insurance CreateInsurance(Insurance insurance);
+
+        Insurance DeleteInsurance(int id);
+
+        Insurance UpdateInsurance(Insurance insurance, int id);
     }
 }

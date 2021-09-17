@@ -12,10 +12,10 @@ namespace EASV.PetShop.SQL
         {
             modelBuilder.Entity<InsuranceEntity>()
                 .HasData(new InsuranceEntity
-            {
-                Id = 1,
-                Name = "Safestuff"
-            });
+                {
+                    Id = 1,
+                    Name = "Safestuff"
+                });
             modelBuilder.Entity<InsuranceEntity>()
                 .HasData(new InsuranceEntity
                 {
