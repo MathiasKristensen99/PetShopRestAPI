@@ -13,9 +13,9 @@ namespace EASV.PetShop.Domain.IRepositories
 
         Pet GetById(int id);
 
-        void CreatePet(Pet pet);
+        Pet CreatePet(Pet pet);
 
-        void DeletePet(int id);
+        Pet DeletePet(int id);
 
         void UpdatePetName(int id, string name);
 

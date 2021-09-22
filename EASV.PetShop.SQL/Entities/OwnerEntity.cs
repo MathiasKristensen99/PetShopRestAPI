@@ -1,6 +1,6 @@
-﻿namespace EASV.PetShop.DataAccess.Entities
+﻿namespace EASV.PetShop.SQL.Entities
 {
-    public class PetTypeEntity
+    public class OwnerEntity
     {
         public int Id { get; set; }
         public string Name { get; set; }

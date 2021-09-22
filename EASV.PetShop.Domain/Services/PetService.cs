@@ -31,14 +31,14 @@ namespace EASV.PetShop.Domain.Services
             return _petRepository.GetById(id);
         }
 
-        public void CreatePet(Pet pet)
+        public Pet CreatePet(Pet pet)
         {
-            _petRepository.CreatePet(pet);
+            return _petRepository.CreatePet(pet);
         }
 
-        public void DeletePet(int id)
+        public Pet DeletePet(int id)
         {
-            _petRepository.DeletePet(id);
+            return _petRepository.DeletePet(id);
         }
 
         public void UpdatePetName(int id, string name)

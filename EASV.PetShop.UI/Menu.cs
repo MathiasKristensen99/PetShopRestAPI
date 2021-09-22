@@ -17,13 +17,14 @@ namespace EASV.PetShop.UI
             _petService = petService;
             _petTypeService = petTypeService;
         }
-
+        /*
         public void Start()
         {
             _petService.GetAllPets();
             ShowWelcomeGreeting();
             StartLoop();
         }
+        
 
         private void StartLoop()
         {
@@ -374,5 +375,6 @@ namespace EASV.PetShop.UI
             }
             return -1;
         }
+        */
     }
 }

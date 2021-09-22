@@ -7,9 +7,18 @@ namespace EASV.PetShop.SQL
     {
         
         public DbSet<InsuranceEntity> Insurances { get; set; } 
-       
+        
+        public DbSet<PetEntity> Pets { get; set; }
+        
+        public DbSet<PetTypeEntity> PetTypes { get; set; }
+        
+        public DbSet<OwnerEntity> Owners { get; set; }
+
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+            modelBuilder.Entity<PetEntity>().HasOne(petEntity => petEntity.Insurance).WithMany();
+            
+            
             modelBuilder.Entity<InsuranceEntity>()
                 .HasData(new InsuranceEntity
                 {

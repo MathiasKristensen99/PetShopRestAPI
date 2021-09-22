@@ -14,7 +14,7 @@ namespace EASV.PetShop.UI
         static void Main(string[] args)
         {
             var serviceCollection = new ServiceCollection();
-            serviceCollection.AddScoped<IPetRepository, PetRepository>();
+            //serviceCollection.AddScoped<IPetRepository, PetRepository>();
             serviceCollection.AddScoped<IPetTypeRepository, PetTypeRepository>();
             serviceCollection.AddScoped<IPetService, PetService>();
             serviceCollection.AddScoped<IPetTypeService, PetTypeService>();
@@ -22,13 +22,13 @@ namespace EASV.PetShop.UI
             var serviceProvider = serviceCollection.BuildServiceProvider();
             var petService = serviceProvider.GetRequiredService<IPetService>();
             
-            IPetRepository repo = new PetRepository();
+            //IPetRepository repo = new PetRepository();
             IPetTypeRepository petTypeRepository = new PetTypeRepository();
-            IPetService service = new PetService(repo);
+            //IPetService service = new PetService(repo);
             IPetTypeService petTypeService = new PetTypeService(petTypeRepository);
             
-            Menu menu = new Menu(service, petTypeService);
-            menu.Start();
+            //Menu menu = new Menu(service, petTypeService);
+            //menu.Start();
         }
     }
 }

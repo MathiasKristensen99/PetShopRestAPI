@@ -9,4 +9,9 @@
       <ProjectReference Include="..\EASV.PetShop.Domain\EASV.PetShop.Domain.csproj" />
     </ItemGroup>
 
+    <ItemGroup>
+      <Folder Include="Converters" />
+      <Folder Include="Entities" />
+    </ItemGroup>
+
 </Project>
