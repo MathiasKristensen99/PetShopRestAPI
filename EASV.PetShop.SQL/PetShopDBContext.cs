@@ -1,4 +1,6 @@
-﻿using EASV.PetShop.SQL.Entities;
+﻿using System;
+using EASV.PetShop.Core.Models;
+using EASV.PetShop.SQL.Entities;
 using Microsoft.EntityFrameworkCore;
 
 namespace EASV.PetShop.SQL
@@ -16,8 +18,55 @@ namespace EASV.PetShop.SQL
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            modelBuilder.Entity<PetEntity>().HasOne(petEntity => petEntity.Insurance).WithMany();
+            modelBuilder.Entity<PetEntity>().HasData(new PetEntity
+            {
+                Id = 1,
+                Name = "James",
+                BirthDate = DateTime.Now,
+                SoldDate = DateTime.Now,
+                Price = 2000,
+                Color = "Black",
+                InsuranceId = 1,
+                PetTypeId = 1,
+                OwnerId = 1
+            });
             
+            modelBuilder.Entity<PetEntity>().HasData(new PetEntity
+            {
+                Id = 2,
+                Name = "Mike",
+                BirthDate = DateTime.Now,
+                SoldDate = DateTime.Now,
+                Price = 3000,
+                Color = "Red",
+                InsuranceId = 2,
+                PetTypeId = 2,
+                OwnerId = 2
+            });
+
+            modelBuilder.Entity<PetTypeEntity>().HasData(new PetTypeEntity
+            {
+                Id = 1,
+                Name = "Dog"
+            });
+
+            modelBuilder.Entity<PetTypeEntity>().HasData(new PetTypeEntity
+            {
+                Id = 2,
+                Name = "Cat"
+            });
+
+            modelBuilder.Entity<OwnerEntity>().HasData(new OwnerEntity
+            {
+                Id = 1,
+                Name = "Simon"
+            });
+
+            modelBuilder.Entity<OwnerEntity>().HasData(new OwnerEntity
+            {
+                Id = 2,
+                Name = "Rasmus"
+            });
             
             modelBuilder.Entity<InsuranceEntity>()
                 .HasData(new InsuranceEntity
@@ -37,6 +86,16 @@ namespace EASV.PetShop.SQL
                     Id = 3,
                     Name = "Nicestuff"
                 });
+            
+            modelBuilder.Entity<PetEntity>()
+                .HasOne(petEntity => petEntity.PetType).WithMany()
+                .HasForeignKey(petEntity => new {petEntity.PetTypeId});
+            
+            modelBuilder.Entity<PetEntity>()
+                .HasOne(petEntity => petEntity.Insurance).WithMany();
+            
+            modelBuilder.Entity<PetEntity>()
+                .HasOne(petEntity => petEntity.Owner).WithMany();
         }
 
         public PetShopDBContext(DbContextOptions<PetShopDBContext> options) : base(options) { }

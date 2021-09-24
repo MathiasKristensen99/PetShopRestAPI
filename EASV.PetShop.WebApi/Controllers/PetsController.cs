@@ -4,8 +4,11 @@ using System.Linq;
 using System.Threading.Tasks;
 using EASV.PetShop.Core.IServices;
 using EASV.PetShop.Core.Models;
+using EASV.PetShop.Domain.Models;
+using EASV.PetShop.WebApi.Dtos;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.ModelBinding;
 
 namespace EASV.PetShop.WebApi.Controllers
 {
@@ -23,15 +26,45 @@ namespace EASV.PetShop.WebApi.Controllers
         }
 
         [HttpPost]
-        public void Create(Pet pet)
+        public ActionResult<Pet> Create([FromBody] PostPetDto dto)
         {
-            _petService.CreatePet(pet);
+            var petFromDto = new Pet
+            {
+                Name = dto.Name,
+                Color = dto.Name,
+                BirthDate = dto.BirthDate,
+                SoldDate = dto.SoldDate,
+                Price = dto.Price,
+                Owner = new Owner
+                {
+                    Id = dto.OwnerId
+                },
+                Insurance = new Insurance
+                {
+                    Id = dto.InsuranceId
+                },
+                PetType = new PetType
+                {
+                    Id = dto.PetTypeId
+                }
+            };
+
+            try
+            {
+                var newPet = _petService.CreatePet(petFromDto);
+                return Created($"https://localhost:5001/api/pets/{newPet.Id}",
+                    newPet);
+            }
+            catch (ArgumentException ae)
+            {
+                return BadRequest(ae.Message);
+            }
         }
 
         [HttpGet]
         public ActionResult<List<Pet>> GetAllPets()
         {
-            return Ok(_petService.GetAllPets());
+            return Ok(_petService.ReadAllPets());
         }
 
         [HttpGet("{id}")]

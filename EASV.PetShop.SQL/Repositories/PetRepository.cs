@@ -5,6 +5,7 @@ using EASV.PetShop.Core.Models;
 using EASV.PetShop.Domain.IRepositories;
 using EASV.PetShop.Domain.Models;
 using EASV.PetShop.SQL.Entities;
+using Microsoft.EntityFrameworkCore;
 
 namespace EASV.PetShop.SQL.Repositories
 {
@@ -24,15 +25,33 @@ namespace EASV.PetShop.SQL.Repositories
 
         public List<Pet> ReadAllPets()
         {
-            return _ctx.Pets.Select(pet => new Pet
-            {
-                Id = pet.Id,
-                Name = pet.Name,
-                Color = pet.Color,
-                BirthDate = pet.BirthDate,
-                SoldDate = pet.SoldDate,
-                Price = pet.Price
-            }).ToList();
+            return _ctx.Pets
+                .Include(pet => pet.Insurance)
+                .Include(pet => pet.Owner)
+                .Include(pet => pet.PetType)
+                .Select(petEntity => new Pet {
+                    Id = petEntity.Id,
+                    Name = petEntity.Name,
+                    Color = petEntity.Color,
+                    BirthDate = petEntity.BirthDate,
+                    SoldDate = petEntity.SoldDate,
+                    Price = petEntity.Price,
+                    Insurance = new Insurance
+                    {
+                        Id = petEntity.Insurance.Id,
+                        Name = petEntity.Insurance.Name
+                    },
+                    Owner = new Owner
+                    {
+                        Id = petEntity.Owner.Id,
+                        Name = petEntity.Owner.Name
+                    },
+                    PetType = new PetType
+                    {
+                        Id = petEntity.PetType.Id,
+                        Name = petEntity.PetType.Name
+                    }
+                }).ToList();
         }
 
         public Pet GetById(int id)
@@ -49,7 +68,15 @@ namespace EASV.PetShop.SQL.Repositories
         {
             var entity = _ctx.Add(new PetEntity
             {
-                Name = pet.Name
+                Id = pet.Id,
+                Name = pet.Name,
+                Color = pet.Color,
+                BirthDate = pet.BirthDate,
+                SoldDate = pet.SoldDate,
+                PetTypeId = pet.PetType.Id,
+                OwnerId = pet.Owner.Id,
+                InsuranceId = pet.Insurance.Id,
+                Price = pet.Price
             }).Entity;
             
             _ctx.SaveChanges();
@@ -57,7 +84,11 @@ namespace EASV.PetShop.SQL.Repositories
             return new Pet
             {
                 Id = entity.Id,
-                Name = entity.Name
+                Name = entity.Name,
+                Color = entity.Color,
+                BirthDate = entity.BirthDate,
+                SoldDate = entity.SoldDate,
+                Price = pet.Price
             };
         }
 
