@@ -5,15 +5,13 @@ namespace EASV.PetShop.Domain.IRepositories
 {
     public interface IOwnerRepository
     {
-        List<Owner> GetAllOwners();
-
         List<Owner> ReadAllOwners();
 
-        void CreateOwner(Owner owner);
+        Owner CreateOwner(Owner owner);
 
-        void UpdateOwnerName(int id, string name);
+        Owner UpdateOwnerName(int id, string name);
 
-        void DeleteOwner(int id);
+        Owner DeleteOwner(int id);
 
         Owner GetOwnerById(int id);
     }

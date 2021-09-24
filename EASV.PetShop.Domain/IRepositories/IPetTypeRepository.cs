@@ -8,5 +8,7 @@ namespace EASV.PetShop.Domain.IRepositories
         List<PetType> GetAllPetTypes();
 
         PetType GetPetType(int id);
+        
+        PetType DeletePetType(int id);
     }
 }

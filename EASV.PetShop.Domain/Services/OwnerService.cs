@@ -13,30 +13,25 @@ namespace EASV.PetShop.Domain.Services
         {
             _ownerRepository = ownerRepository;
         }
-        
-        public List<Owner> GetAllOwners()
-        {
-            return _ownerRepository.GetAllOwners();
-        }
 
         public List<Owner> ReadAllOwners()
         {
             return _ownerRepository.ReadAllOwners();
         }
 
-        public void CreateOwner(Owner owner)
+        public Owner CreateOwner(Owner owner)
         {
-            _ownerRepository.CreateOwner(owner);
+            return _ownerRepository.CreateOwner(owner);
         }
 
-        public void UpdateOwnerName(int id, string name)
+        public Owner UpdateOwnerName(int id, string name)
         {
-            _ownerRepository.UpdateOwnerName(id, name);
+            return _ownerRepository.UpdateOwnerName(id, name);
         }
 
-        public void DeleteOwner(int id)
+        public Owner DeleteOwner(int id)
         {
-            _ownerRepository.DeleteOwner(id);
+            return _ownerRepository.DeleteOwner(id);
         }
 
         public Owner GetOwnerById(int id)

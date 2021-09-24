@@ -27,9 +27,9 @@ namespace EASV.PetShop.WebApi.Controllers
         }
 
         [HttpGet]
-        public ActionResult<List<Owner>> GetAllPets()
+        public ActionResult<List<Owner>> ReadAllPets()
         {
-            return Ok(_ownerService.GetAllOwners());
+            return Ok(_ownerService.ReadAllOwners());
         }
 
         [HttpDelete]

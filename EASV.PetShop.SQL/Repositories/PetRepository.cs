@@ -88,7 +88,7 @@ namespace EASV.PetShop.SQL.Repositories
                 Color = entity.Color,
                 BirthDate = entity.BirthDate,
                 SoldDate = entity.SoldDate,
-                Price = pet.Price
+                Price = entity.Price
             };
         }
 

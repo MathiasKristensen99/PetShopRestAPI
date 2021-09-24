@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using EASV.PetShop.Core.IServices;
-using EASV.PetShop.DataAccess;
 using EASV.PetShop.Domain.IRepositories;
 using EASV.PetShop.Domain.Services;
 using EASV.PetShop.SQL;
@@ -18,6 +17,8 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using Microsoft.OpenApi.Models;
+using OwnerRepository = EASV.PetShop.SQL.Repositories.OwnerRepository;
+using PetRepository = EASV.PetShop.SQL.Repositories.PetRepository;
 
 namespace EASV.PetShop.WebApi
 {

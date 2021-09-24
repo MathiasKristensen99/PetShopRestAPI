@@ -22,5 +22,10 @@ namespace EASV.PetShop.Domain.Services
         {
             return _petTypeRepository.GetPetType(id);
         }
+
+        public PetType DeletePetType(int id)
+        {
+            return _petTypeRepository.DeletePetType(id);
+        }
     }
 }
