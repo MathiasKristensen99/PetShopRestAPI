@@ -15,6 +15,8 @@ namespace EASV.PetShop.SQL
         public DbSet<PetTypeEntity> PetTypes { get; set; }
         
         public DbSet<OwnerEntity> Owners { get; set; }
+        
+        public DbSet<UserEntity> Users { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {

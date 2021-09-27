@@ -8,4 +8,8 @@
       <ProjectReference Include="..\EASV.PetShop.Core\EASV.PetShop.Core.csproj" />
     </ItemGroup>
 
+    <ItemGroup>
+      <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="5.0.10" />
+    </ItemGroup>
+
 </Project>
