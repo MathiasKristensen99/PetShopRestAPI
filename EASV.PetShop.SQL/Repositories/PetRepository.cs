@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using EASV.PetShop.Core.Filtering;
 using EASV.PetShop.Core.Models;
 using EASV.PetShop.Domain.IRepositories;
 using EASV.PetShop.Domain.Models;
@@ -17,19 +18,20 @@ namespace EASV.PetShop.SQL.Repositories
         {
             _ctx = ctx;
         }
-        
-        public List<Pet> GetAllPets()
+
+        public int TotalCount()
         {
-            throw new NotImplementedException();
+            return _ctx.Pets.Count();
         }
 
-        public List<Pet> ReadAllPets()
+        public List<Pet> ReadAllPets(Filter filter)
         {
-            return _ctx.Pets
+            var selectQuery = _ctx.Pets
                 .Include(pet => pet.Insurance)
                 .Include(pet => pet.Owner)
                 .Include(pet => pet.PetType)
-                .Select(petEntity => new Pet {
+                .Select(petEntity => new Pet
+                {
                     Id = petEntity.Id,
                     Name = petEntity.Name,
                     Color = petEntity.Color,
@@ -52,6 +54,38 @@ namespace EASV.PetShop.SQL.Repositories
                         Name = petEntity.PetType.Name
                     }
                 }).ToList();
+            
+            if (filter.OrderDir.ToLower().Equals("asc"))
+            {
+                switch (filter.OrderBy.ToLower())
+                {
+                    case "Name":
+                        selectQuery.OrderBy(pet => pet.Name);
+                        break;
+                    case "Id":
+                        selectQuery.OrderBy(pet => pet.Id);
+                        break;
+                }
+            }
+            else
+            {
+                switch (filter.OrderBy.ToLower())
+                {
+                    case "Name":
+                        selectQuery.OrderByDescending(pet => pet.Name);
+                        break;
+                    case "Id":
+                        selectQuery.OrderByDescending(pet => pet.Id);
+                        break;
+                }
+                selectQuery.OrderByDescending(entity => entity.Name);
+            }
+            
+            var query = selectQuery
+                .Skip((filter.Page - 1) * filter.Limit)
+                .Take(filter.Limit);
+            
+            return query.ToList();
         }
 
         public Pet GetById(int id)

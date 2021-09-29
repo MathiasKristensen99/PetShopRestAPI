@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using EASV.PetShop.Core.Filtering;
 using EASV.PetShop.Core.IServices;
 using EASV.PetShop.Core.Models;
 using EASV.PetShop.Domain.Models;
@@ -62,9 +63,9 @@ namespace EASV.PetShop.WebApi.Controllers
         }
 
         [HttpGet]
-        public ActionResult<List<Pet>> GetAllPets()
+        public ActionResult<List<Pet>> ReadAllPets([FromQuery] Filter filter)
         {
-            return Ok(_petService.ReadAllPets());
+            return Ok(_petService.ReadAllPets(filter));
         }
 
         [HttpGet("{id}")]

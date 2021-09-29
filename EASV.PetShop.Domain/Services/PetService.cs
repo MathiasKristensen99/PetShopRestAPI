@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
+using EASV.PetShop.Core.Filtering;
 using EASV.PetShop.Core.IServices;
 using EASV.PetShop.Core.Models;
 using EASV.PetShop.Domain.IRepositories;
@@ -15,15 +17,27 @@ namespace EASV.PetShop.Domain.Services
         {
             _petRepository = repository;
         }
-        
-        public List<Pet> GetAllPets()
+
+        public int TotalCount()
         {
-            return _petRepository.GetAllPets();
+            return _petRepository.TotalCount();
         }
 
-        public List<Pet> ReadAllPets()
+        public List<Pet> ReadAllPets(Filter filter)
         {
-            return _petRepository.ReadAllPets();
+            if (filter == null || filter.Limit <= 0 || filter.Limit > 100)
+            {
+                throw new ArgumentException("Filter limit must be between 1 and 100");
+            }
+
+            var totalCount = TotalCount();
+            var maxPageCount = Math.Ceiling((double)totalCount / filter.Limit);
+            
+            if (filter.Page < 1 || filter.Page > maxPageCount)
+            {
+                throw new ArgumentException($"Filter page must be above 1 and {maxPageCount}");
+            }
+            return _petRepository.ReadAllPets(filter);
         }
 
         public Pet GetById(int id)

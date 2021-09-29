@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using EASV.PetShop.Core.Filtering;
 using EASV.PetShop.Core.Models;
 using EASV.PetShop.Domain.Models;
 
@@ -7,9 +8,8 @@ namespace EASV.PetShop.Domain.IRepositories
 {
     public interface IPetRepository
     {
-        List<Pet> GetAllPets();
-
-        List<Pet> ReadAllPets();
+        int TotalCount();
+        List<Pet> ReadAllPets(Filter filter);
 
         Pet GetById(int id);
 
