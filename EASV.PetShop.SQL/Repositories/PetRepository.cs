@@ -78,7 +78,6 @@ namespace EASV.PetShop.SQL.Repositories
                         selectQuery.OrderByDescending(pet => pet.Id);
                         break;
                 }
-                selectQuery.OrderByDescending(entity => entity.Name);
             }
             
             var query = selectQuery
