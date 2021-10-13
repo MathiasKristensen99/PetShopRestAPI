@@ -1,0 +1,17 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <TargetFramework>net5.0</TargetFramework>
+    </PropertyGroup>
+
+    <ItemGroup>
+      <PackageReference Include="System.IdentityModel.Tokens.Jwt" Version="6.7.1" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <ProjectReference Include="..\EASV.PetShop.Core\EASV.PetShop.Core.csproj" />
+      <ProjectReference Include="..\EASV.PetShop.Domain\EASV.PetShop.Domain.csproj" />
+      <ProjectReference Include="..\EASV.PetShop.WebApi\EASV.PetShop.WebApi.csproj" />
+    </ItemGroup>
+
+</Project>

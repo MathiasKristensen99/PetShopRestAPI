@@ -5,14 +5,15 @@ using System.Security.Claims;
 using EASV.PetShop.Core.IServices;
 using EASV.PetShop.Core.Models;
 using Microsoft.IdentityModel.Tokens;
+using Security.Entities;
 
-namespace EASV.PetShop.Domain.Services
+namespace Security.Helpers
 {
-    public class AuthenticationService : IAuthenticationService
+    public class AuthenticationHelper : IAuthenticationHelper
     {
         private byte[] secretBytes;
 
-        public AuthenticationService(Byte[] secret)
+        public AuthenticationHelper(Byte[] secret)
         {
             secretBytes = secret;
         }

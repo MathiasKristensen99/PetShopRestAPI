@@ -1,8 +1,10 @@
-﻿using EASV.PetShop.Core.Models;
+﻿
 
-namespace EASV.PetShop.Core.IServices
+using Security.Entities;
+
+namespace Security.Helpers
 {
-    public interface IAuthenticationService
+    public interface IAuthenticationHelper
     {
         void CreatePasswordHash(string password, out byte[] passwordHash, out byte[] passwordSalt);
 
