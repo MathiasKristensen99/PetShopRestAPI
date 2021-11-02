@@ -1,4 +1,4 @@
-﻿namespace Security.Entities
+﻿namespace EASV.PetShop.Security.Entities
 {
     public class User
     {

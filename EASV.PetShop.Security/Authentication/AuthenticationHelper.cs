@@ -4,10 +4,10 @@ using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using EASV.PetShop.Core.IServices;
 using EASV.PetShop.Core.Models;
+using EASV.PetShop.Security.Entities;
 using Microsoft.IdentityModel.Tokens;
-using Security.Entities;
 
-namespace Security.Helpers
+namespace EASV.PetShop.Security.Helpers
 {
     public class AuthenticationHelper : IAuthenticationHelper
     {

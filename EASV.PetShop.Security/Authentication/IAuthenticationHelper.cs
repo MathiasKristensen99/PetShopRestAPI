@@ -1,8 +1,8 @@
 ﻿
 
-using Security.Entities;
+using EASV.PetShop.Security.Entities;
 
-namespace Security.Helpers
+namespace EASV.PetShop.Security.Helpers
 {
     public interface IAuthenticationHelper
     {
