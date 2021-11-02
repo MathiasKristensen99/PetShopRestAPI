@@ -2,7 +2,7 @@
 
 using EASV.PetShop.Security.Entities;
 
-namespace EASV.PetShop.Security.Helpers
+namespace EASV.PetShop.Security.Authentication
 {
     public interface IAuthenticationHelper
     {

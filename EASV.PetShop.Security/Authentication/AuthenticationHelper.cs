@@ -2,12 +2,10 @@
 using System.Collections.Generic;
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
-using EASV.PetShop.Core.IServices;
-using EASV.PetShop.Core.Models;
 using EASV.PetShop.Security.Entities;
 using Microsoft.IdentityModel.Tokens;
 
-namespace EASV.PetShop.Security.Helpers
+namespace EASV.PetShop.Security.Authentication
 {
     public class AuthenticationHelper : IAuthenticationHelper
     {
@@ -48,13 +46,9 @@ namespace EASV.PetShop.Security.Helpers
         {
             var claims = new List<Claim>
             {
-                new Claim(ClaimTypes.Name, user.Username)
+                new Claim(ClaimTypes.Name, user.Username),
+                new Claim(ClaimTypes.Sid, user.Id.ToString())
             };
-
-            if (user.IsAdmin)
-            {
-                claims.Add(new Claim(ClaimTypes.Role, "Administrator"));
-            }
 
             var token = new JwtSecurityToken(
                 new JwtHeader(new SigningCredentials(new SymmetricSecurityKey(secretBytes),
